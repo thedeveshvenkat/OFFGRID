@@ -33,7 +33,7 @@ Original source: `docs/OFFGRID DESIGN DOC.pdf` (v0.2 draft). If it conflicts wit
 
 ## Project facts
 - Xcode project: `OFFGRID.xcodeproj` (uses the newer `project.xcproj` format with folder-based membership — add Swift files under `OFFGRID/` rather than hand-editing the project file). Bundle ID `com.offgrid.app`.
-- Source today: template UI only. `OFFGRIDApp.swift` (renamed from `MyApp`, 1A.1) and template `ContentView.swift`. Tests live in `OFFGRIDTests/`, a folder-based Swift Testing target hosted by the app.
+- Source today: non-UI foundation (`Core/` models and protocols, `App/AppEnvironment.swift`, Debug-only `Mocks/`; ADR-021) plus the template `ContentView.swift` UI. Everything in `Mocks/` must stay wrapped in `#if DEBUG`; only `AppEnvironment` may reference mock types (enforced by `MockIsolationTests`). Tests live in `OFFGRIDTests/`, a folder-based Swift Testing target hosted by the app.
 - Project file format: Xcode 27's JSON-style `project.xcproj`. Targets are `OFFGRID` (id `…0100000000`) and `OFFGRIDTests` (id `…0200000000`, `product-type` `bundle.unit-test`, `test-host-target` `OFFGRID`). The shared scheme is `OFFGRID.xcodeproj/xcshareddata/xcschemes/OFFGRID.xcscheme`. New Swift files go in the existing folders; editing the project file is only for target or setting changes, with approval.
 - Toolchain: Xcode 27.2 (27B52). Apple Developer Program not enrolled: use the simulator; simulator builds sign locally and need no account.
 - Build (verified 2026-11-19, `** BUILD SUCCEEDED **` on a clean build), run from the repo root:

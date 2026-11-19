@@ -29,15 +29,15 @@ Everything here is **PROPOSED** unless marked CONFIRMED. It derives from design 
 Responsibilities: render the three pages, own all gesture handling, play snippets, report interaction events, cache the next 2–3 prefetched songs and artwork, apply themes.
 
 Planned layout under `OFFGRID/`:
-- `App/` — entry point (rename of `MyApp` pending approval), root navigation, page switching.
+- `App/` — `AppEnvironment` (the single provider-selection point, ADR-021); root navigation and page switching later. The entry point `OFFGRIDApp.swift` (renamed from `MyApp`, ADR-017) currently sits at `OFFGRID/` root; moving it here needs approval.
 - `DesignSystem/` — themes (dark/light), glass components, artwork-driven color and blur.
 - `Core/Audio` — `AudioPlayer` protocol and implementation: looping snippets, fades, prefetch, audio session for background and lock-screen playback.
 - `Core/Networking` — API client; `Core/Models` — track, interaction, game types; `Core/Storage` — local cache.
-- `Core/Providers` — `TrackProvider` protocol, `RemoteTrackProvider`.
+- `Core/Providers` — `TrackProvider` protocol, `UnconfiguredTrackProvider` (Release default until 1E), `RemoteTrackProvider` later (1E).
 - `Features/ForYou` — playing/paused state machine and gesture recognizer layer.
 - `Features/Games/BlindRanking` — round state machine and result screen.
 - `Features/Profile`.
-- `Mocks/` — mock provider and fixtures (see `docs/development/mock-data-policy.md`).
+- `Mocks/` — mock provider, fake catalog, and runtime-generated placeholder tones; every file is inside `#if DEBUG` (ADR-021; see `docs/development/mock-data-policy.md`).
 
 Key design points:
 - Gesture handling and screen state (playing/paused/reveal) are a pure, testable state machine separate from views.

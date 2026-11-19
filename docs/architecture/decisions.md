@@ -63,3 +63,13 @@ Founder decision (2026-11-19). Q-08 (backend language) is decided at the start o
 
 ## ADR-020 — Swipe down, gesture coach, and simulator-only testing for now · ACCEPTED
 Founder decisions (2026-11-19, when approving Phase 1A). (1) Swipe down = previous song is approved, alongside ADR-015, which completes Q-01. (2) A first-run gesture coach is approved: minimal and consistent with OFFGRID's design, shown once. (3) Physical-device testing is deferred: development and verification use the iOS Simulator, with no Apple Developer Program enrollment required. On-device checks (audio routing, haptics, lock screen, gesture feel) are re-checked on the founder's iPhone later. Consequence: 1A's "manual test on a physical device" criterion becomes "manual test in the Simulator", with the device check carried as a deferred item in `status.md`. Anything that only a device can confirm (for example haptics, which the Simulator does not produce) is recorded as "not verified on device".
+
+## ADR-021 — Foundation interfaces and Debug-only mocks · ACCEPTED (founder-approved plan, 2026-11-19)
+This fixes the shape that ADR-004 left PROPOSED.
+- `TrackProvider` has two calls: `nextTracks(count:)` returns track details for an infinite stream, and `playbackSource(for:)` resolves audio just before playback. Resolving audio separately means a provider with short-lived audio links needs no special handling in core code.
+- `Track` is provider-neutral: an opaque `TrackID`, title, artist, a `Snippet` validated to 20–30 s (including when decoded), and optional artwork and source-page URLs.
+- `AudioPlayer` is a `@MainActor` protocol (load, play, pause, stop, state). Its implementation is in 1A.4.
+- `App/AppEnvironment.swift` is the single selection point (mock-data-policy rule 4). Debug selects `MockTrackProvider`. Release selects `UnconfiguredTrackProvider`, which serves nothing, until a backend provider exists in 1E.
+- Every file in `Mocks/` is wrapped in `#if DEBUG`, so mock types do not exist in Release builds.
+- Placeholder audio is a plain sine tone per mock track, generated at runtime into Caches as WAV. No audio files are in the repo. It's temporary test audio, per the founder: kept simple.
+- Enforcement is a source-scanning test (`MockIsolationTests`) that ignores comments and strings. Per founder direction, it checks only that production code outside `Mocks/` never references mock types, with `AppEnvironment` excepted inside `#if DEBUG`. It does not check provider names in text.
