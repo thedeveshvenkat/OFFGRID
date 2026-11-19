@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Xcode: per-user state (never shared)
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Xcode: build output
+DerivedData/
+build/
+*.xcresult
+
+# Swift Package Manager
+.swiftpm/
+.build/
