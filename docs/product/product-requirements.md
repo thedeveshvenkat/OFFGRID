@@ -55,10 +55,10 @@ Backlog only, not committed: other games (Guess the Artist's Size, Head to Head)
 |---|---|---|---|
 | GS-01 | Double tap | Like; brief glass pulse and soft haptic, nothing remains on screen. | CONFIRMED |
 | GS-02 | Single tap | Pause / resume (pausing reveals controls). | CONFIRMED (founder, 2026-11-19) |
-| GS-03 | Swipe up / down | Swipe up = next song: CONFIRMED (founder, 2026-11-19). Swipe down = previous song: OPEN (not covered by the founder's Q-01 answer). | Mixed |
+| GS-03 | Swipe up / down | Next / previous song. | CONFIRMED (founder, 2026-11-19; swipe down in ADR-020) |
 | GS-04 | Swipe left | "Not interested": explicit negative signal, then next song. | CONFIRMED (founder, 2026-11-19) |
 | GS-05 | Long press | Hold to reveal the full-song link at the source provider; release to dismiss. | OPTIONAL (founder, 2026-11-19): build only if it doesn't collide with other gestures; first to drop. |
-| GS-06 | First-run coach moment teaches gestures once with controls visible, then never again. | PROPOSED |
+| GS-06 | First-run coach moment teaches gestures once with controls visible, then never again. Minimal and consistent with OFFGRID's design. | CONFIRMED (founder, 2026-11-19, ADR-020); visual design PROPOSED in 1A |
 | GS-07 | Accessibility: VoiceOver is supported, and every essential action (like, pause/resume, next, not interested) also works without the gesture, for example through VoiceOver actions or the paused-state controls. No essential function depends on gestures alone. | CONFIRMED (founder, 2026-11-19); exact mechanism PROPOSED in 1A |
 
 ### 5.3 Playback

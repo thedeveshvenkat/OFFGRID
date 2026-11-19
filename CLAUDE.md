@@ -33,13 +33,17 @@ Original source: `docs/OFFGRID DESIGN DOC.pdf` (v0.2 draft). If it conflicts wit
 
 ## Project facts
 - Xcode project: `OFFGRID.xcodeproj` (uses the newer `project.xcproj` format with folder-based membership — add Swift files under `OFFGRID/` rather than hand-editing the project file). Bundle ID `com.offgrid.app`.
-- Source today: the unmodified Xcode template (`MyApp.swift`, `ContentView.swift`).
+- Source today: template UI only. `OFFGRIDApp.swift` (renamed from `MyApp`, 1A.1) and template `ContentView.swift`. Tests live in `OFFGRIDTests/`, a folder-based Swift Testing target hosted by the app.
+- Project file format: Xcode 27's JSON-style `project.xcproj`. Targets are `OFFGRID` (id `…0100000000`) and `OFFGRIDTests` (id `…0200000000`, `product-type` `bundle.unit-test`, `test-host-target` `OFFGRID`). The shared scheme is `OFFGRID.xcodeproj/xcshareddata/xcschemes/OFFGRID.xcscheme`. New Swift files go in the existing folders; editing the project file is only for target or setting changes, with approval.
 - Toolchain: Xcode 27.2 (27B52). Apple Developer Program not enrolled: use the simulator; simulator builds sign locally and need no account.
 - Build (verified 2026-11-19, `** BUILD SUCCEEDED **` on a clean build), run from the repo root:
   `xcodebuild -project OFFGRID.xcodeproj -scheme OFFGRID -destination 'platform=iOS Simulator,name=iPhone 17' build`
   If that simulator is missing, list the available ones with `xcrun simctl list devices available`.
-- Test: no test target yet. The `OFFGRIDTests` target (Swift Testing, shared scheme) is created at the start of Phase 1A (ADR-014); record the verified `xcodebuild test` command here then.
-- Decided platform: iPhone only, minimum iOS 26.0 (ADR-013). The project file still says iOS 27.2 and iPhone + iPad until the settings change at the start of 1A.
+- Test (verified 2026-11-19, `** TEST SUCCEEDED **`, Swift Testing, shared `OFFGRID` scheme), run from the repo root:
+  `xcodebuild -project OFFGRID.xcodeproj -scheme OFFGRID -destination 'platform=iOS Simulator,name=iPhone 17' test`
+  In Xcode: select the `OFFGRID` scheme and press ⌘U.
+- Platform: iPhone only, portrait, minimum iOS 26.0 (ADR-013). Applied in the project file and guarded by `OFFGRIDTests/AppConfigurationTests.swift`.
+- Device testing is deferred (ADR-020); use the Simulator.
 - Docs live in `docs/`, split into `product/`, `architecture/`, `development/`.
 
 ## Conventions

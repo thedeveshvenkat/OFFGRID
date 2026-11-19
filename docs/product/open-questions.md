@@ -4,7 +4,7 @@ Resolve a question by recording the answer here, then in `decisions.md` if it is
 
 | ID | Question | Why it matters | Blocks | Status |
 |---|---|---|---|---|
-| Q-01 | Approve the gesture set beyond double-tap-to-like (single tap, swipe up/down/left, long press)? Is swipe left as "not for me" right? | Core interaction; model gets clean negatives from swipe left. | Phase 1A gestures | RESOLVED 2026-11-19 (founder, ADR-015): double tap = like; single tap = pause/resume; swipe up = next; swipe left = not interested; long press optional. Not covered by the answer, still OPEN: swipe down for previous song (GS-03), and the first-run coach moment (GS-06). |
+| Q-01 | Approve the gesture set beyond double-tap-to-like (single tap, swipe up/down/left, long press)? Is swipe left as "not for me" right? | Core interaction; model gets clean negatives from swipe left. | Phase 1A gestures | RESOLVED 2026-11-19 (founder, ADR-015): double tap = like; single tap = pause/resume; swipe up = next; swipe left = not interested; long press optional. Follow-up 2026-11-19 (founder, ADR-020): swipe down = previous song, and the first-run gesture coach (minimal), are also approved. |
 | Q-02 | Should Blind Ranking hide title and artwork until after placement? | Changes game feel. | Phase 2 | OPEN (design doc Q2) |
 | Q-03 | Is tap-to-pause revealing five glass slot buttons acceptable, or is a fully invisible placement method wanted? | Conflicts with "no visible buttons" principle. | Phase 2 | OPEN (design doc Q3) |
 | Q-04 | Are the underground defaults right: 25,000 followers, 250,000 track plays, the rap tag allowlist? | Defines the catalog. | Phase 1C | OPEN (design doc Q4) |

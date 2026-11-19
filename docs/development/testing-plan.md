@@ -3,7 +3,7 @@
 Status: PROPOSED. No tests exist yet; there is no test target in the Xcode project. Founder decision (2026-11-19, ADR-014): the `OFFGRIDTests` unit-test target is created at the start of Phase 1A, not before, using Swift Testing, with the `OFFGRID` scheme shared so tests run from Xcode and from `xcodebuild test`. No placeholder tests; tests are added alongside the features they cover.
 
 ## 1. Principles
-- A feature is "done" only when its tests pass AND it has been checked on a real device where the behavior depends on one (audio, haptics, gestures, lock screen). Evidence goes in `status.md`.
+- A feature is "done" only when its tests pass AND it has been checked on a real device where the behavior depends on one (audio, haptics, gestures, lock screen). Evidence goes in `status.md`. Exception (founder, ADR-020): during Phase 1A, the iOS Simulator stands in for the device. Device-dependent behavior is recorded as "not verified on device" and re-checked on the founder's iPhone later.
 - Test logic where it lives: put decisions (gesture states, ranking, scoring, game rules) in plain Swift/Python types that can be unit-tested without UI.
 - Tests use mock data only through the mock layer; production data is never used in automated tests (`mock-data-policy.md`).
 - Do not state test results that were not actually run.
